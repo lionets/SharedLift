@@ -1,16 +1,215 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  
-  <parent>
-  	<groupId>cn.com.SharedLift</groupId>
-  	<artifactId>SharedLift</artifactId>
-  	<version>1.0-SNAPSHOT</version>
-  </parent>
-  
-  <artifactId>SharedLift-APP</artifactId>
-  <packaging>war</packaging>
-  <name>SharedLift-APP</name>
-  <version>1.0</version>
-  
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>cn.com.SharedLift</groupId>
+		<artifactId>SharedLift</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>SharedLift-APP</artifactId>
+	<packaging>war</packaging>
+	<name>SharedLift-APP</name>
+	<version>1.0</version>
+
+	<dependencies>
+		<!-- 依赖newglobe-common -->
+		<!-- <dependency> <groupId>cn.com.newglobe.tathong</groupId> <artifactId>tathong-common</artifactId> 
+			</dependency> -->
+
+		<!-- SPRING basic begin -->
+		<!-- email/scheduler/freemarker -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		
+		<!-- AOP begin -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+		<!-- AOP end -->
+
+		<!-- SPRING basic end -->
+		<!-- SPRING end -->
+
+		<!-- PERSISTENCE begin -->
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+
+		<!-- connection pool -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+		</dependency>
+
+		<!-- jdbc driver -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- PERSISTENCE end -->
+
+		<!-- WEB begin -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+
+		<!-- WEB end -->
+
+		<!-- Redis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+
+		<!-- json lib -->
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<classifier>jdk15</classifier>
+		</dependency>
+
+		<!-- LOGGING begin -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.log4jdbc</groupId>
+			<artifactId>log4jdbc</artifactId>
+		</dependency>
+		<!-- LOGGING end -->
+
+		<!-- TEST begin -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<!-- for xxxDemo class -->
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<!-- for xxxDemo class -->
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- 文件上传依赖的版本 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+
+		<!-- <dependency> <groupId>cn.com.newglobe.common</groupId> <artifactId>newglobe-common</artifactId> 
+			<version>0.0.1-SNAPSHOT</version> </dependency> <dependency> <groupId>cn.com.newglobe.tathong</groupId> 
+			<artifactId>tathong-common</artifactId> <version>0.0.1-SNAPSHOT</version> 
+			</dependency> -->
+
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<finalName>APP</finalName>
+		<plugins>
+			<!-- tomcat7 插件 -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<systemProperties>
+						<spring.profiles.active>development</spring.profiles.active>
+					</systemProperties>
+					<useTestClasspath>true</useTestClasspath>
+				</configuration>
+			</plugin>
+
+			<!-- 忽略单元测试失败 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+
+			<!-- 跳过单元测试 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!--打包可执行war包,基于Tomcat -->
+		<profile>
+			<id>standalone-tomcat</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.tomcat.maven</groupId>
+						<artifactId>tomcat7-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>tomcat-run</id>
+								<goals>
+									<goal>exec-war-only</goal>
+								</goals>
+								<phase>package</phase>
+								<configuration>
+									<attachArtifactClassifier>standalone-tomcat</attachArtifactClassifier>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
+
