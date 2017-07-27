@@ -4,6 +4,12 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="SharedLift-Core-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SharedLift-Core/SharedLift-Core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SharedLift-Persist-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SharedLift-Persist/SharedLift-Persist">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/SharedLift-APP/target/classes"/>
         <property name="context-root" value="APP"/>
     </wb-module>

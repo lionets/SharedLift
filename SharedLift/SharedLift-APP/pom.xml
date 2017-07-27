@@ -14,9 +14,12 @@
 	<version>1.0</version>
 
 	<dependencies>
-		<!-- 依赖newglobe-common -->
-		<!-- <dependency> <groupId>cn.com.newglobe.tathong</groupId> <artifactId>tathong-common</artifactId> 
-			</dependency> -->
+		<!-- 依赖SharedLift-Core -->
+		<dependency>
+			<groupId>cn.com.SharedLift</groupId>
+			<artifactId>SharedLift-Core</artifactId> 
+			<version>1.0</version>
+		</dependency>
 
 		<!-- SPRING basic begin -->
 		<!-- email/scheduler/freemarker -->
@@ -24,14 +27,28 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
 		<!-- AOP begin -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 		</dependency>
 		<!-- AOP end -->
-
+		
+		<!-- WEB begin -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<!-- WEB end -->
+		
 		<!-- SPRING basic end -->
 		<!-- SPRING end -->
 
@@ -58,15 +75,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		<!-- PERSISTENCE end -->
-
-		<!-- WEB begin -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-		</dependency>
-
-		<!-- WEB end -->
-
+		
 		<!-- Redis -->
 		<dependency>
 			<groupId>redis.clients</groupId>

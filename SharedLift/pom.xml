@@ -33,7 +33,7 @@
 		<mysql.version>5.1.30</mysql.version>
 		<jstl.version>1.2</jstl.version>
 		<json-lib.version>2.4</json-lib.version>
-		<jedis.version>2.5.1</jedis.version>
+		<jedis.version>2.6.2</jedis.version>
 
 	</properties>
 
@@ -45,10 +45,18 @@
 				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
 				<version>${spring.version}</version>
+				<!-- 纯粹为了exclude commons-loging -->
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -91,6 +99,11 @@
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
+		      <groupId>org.springframework.data</groupId>
+		      <artifactId>spring-data-redis</artifactId>
+		      <version>1.5.0.RELEASE</version>
+		    </dependency>
+			<dependency>
 				<groupId>org.mybatis</groupId>
 				<artifactId>mybatis</artifactId>
 				<version>${mybatis.version}</version>
@@ -110,16 +123,17 @@
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>commons-dbcp</groupId>
-				<artifactId>commons-dbcp</artifactId>
-				<version>1.2.2</version>
-			</dependency>
+			
 			<!-- connection pool -->
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jdbc</artifactId>
 				<version>${tomcat-jdbc.version}</version>
+			</dependency>
+			<dependency>  
+			    <groupId>org.apache.tomcat</groupId>  
+			    <artifactId>tomcat-juli</artifactId>  
+			    <version>${tomcat-jdbc.version}</version>  
 			</dependency>
 			<dependency>
 				<groupId>jstl</groupId>
