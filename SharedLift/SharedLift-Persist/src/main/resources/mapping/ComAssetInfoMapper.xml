@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.sharedLift.dao.AccountInfoDao" >
+  <resultMap id="BaseResultMap" type="cn.com.sharedLift.model.AccountInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="arrival_id" property="arrivalId" jdbcType="BIGINT"/>
+    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
+    <result column="ext2" property="ext2" jdbcType="VARCHAR" />
+    <result column="ext3" property="ext3" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="assets_type" property="assetsType" jdbcType="SMALLINT" />
+    <result column="assets_id" property="assetsId" jdbcType="BIGINT" />
+    <result column="assets_name" property="assetsName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id,account_email,account_name,account_password,account_salt,account_type,account_status,register_time,last_login_time,modifyBy,modifyOn,is_valid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from com_account
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+ 
+ <select id="getAllComAssetInfo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from com_account
+    where 1=1
+  </select>
+</mapper>

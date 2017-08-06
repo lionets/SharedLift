@@ -33,7 +33,10 @@
 		<mysql.version>5.1.30</mysql.version>
 		<jstl.version>1.2</jstl.version>
 		<json-lib.version>2.4</json-lib.version>
+		<jackson.version>2.4.0</jackson.version>
 		<jedis.version>2.6.2</jedis.version>
+		<guava.version>17.0</guava.version>
+		<joda-time.version>2.3</joda-time.version>
 
 	</properties>
 
@@ -208,6 +211,21 @@
 				<version>${json-lib.version}</version>
 				<classifier>jdk15</classifier>
 			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.module</groupId>
+				<artifactId>jackson-module-jaxb-annotations</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
 
 			<!-- NOSQL begin -->
 			<dependency>
@@ -216,6 +234,37 @@
 				<version>${jedis.version}</version>
 			</dependency>
 			<!-- NOSQL end -->
+			
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.0.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- google java library -->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+
+			<!-- joda -->
+			<dependency>
+				<groupId>joda-time</groupId>
+				<artifactId>joda-time</artifactId>
+				<version>${joda-time.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>joda-time</groupId>
+				<artifactId>joda-time-jsptags</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<!-- joda for jackson -->
+			<dependency>
+				<groupId>com.fasterxml.jackson.datatype</groupId>
+				<artifactId>jackson-datatype-joda</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>
